@@ -3,11 +3,31 @@ import 'package:flutter/services.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:test_flutter_websockets/screens/home_page/home_page.dart';
 
+import 'package:socket_io_client/socket_io_client.dart' as IO;
+
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
   SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]).then((_) {
 
-  runApp(MaterialApp(
+    // @ WEB SOCKET
+    IO.Socket socket = IO.io('http://192.168.1.114:3000', <String, dynamic>{
+      'transports': ['websocket'],
+      'autoConnect': true,
+      // 'extraHeaders': {'foo': 'bar'} // optional
+    });
+
+    socket.on('connect', (_) {
+      print('connect');
+      socket.emit('msg', 'test');
+    });
+
+    socket.on('event', (data) => print(data));
+    socket.on('chat:mensaje', (data) => print('socket mensaje: $data'));
+    socket.on('disconnect', (_) => print('disconnect'));
+    socket.on('fromServer', (_) => print(_));
+
+
+    runApp(MaterialApp(
       theme: ThemeData(
         fontFamily: 'Montserrat'
       ),
@@ -37,6 +57,7 @@ class _LoadingState extends State<Loading> {
   void initState() { 
     super.initState();
     Future.delayed(Duration(milliseconds: 1000), () {
+
       Navigator.pushReplacementNamed(context, '/home');
     });
   }

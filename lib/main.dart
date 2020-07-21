@@ -16,16 +16,20 @@ void main() {
       // 'extraHeaders': {'foo': 'bar'} // optional
     });
 
+    Map map = {
+      'username':'flutter', // !! SOLO PARA TEST  
+      'message':'hey'
+    };
+
     socket.on('connect', (_) {
       print('connect');
-      socket.emit('msg', 'test');
+      socket.emit('chat:mensaje', map);
     });
 
     socket.on('event', (data) => print(data));
     socket.on('chat:mensaje', (data) => print('socket mensaje: $data'));
     socket.on('disconnect', (_) => print('disconnect'));
     socket.on('fromServer', (_) => print(_));
-
 
     runApp(MaterialApp(
       theme: ThemeData(

@@ -3,10 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:test_flutter_websockets/screens/home_page/widgets/chat.dart';
 import 'package:test_flutter_websockets/screens/home_page/widgets/message.dart';
 import 'package:test_flutter_websockets/screens/home_page/widgets/username.dart';
-
+import 'package:socket_io_client/socket_io_client.dart' as IO;
 
 class MyHomePage extends StatefulWidget {
-  MyHomePage({Key key}) : super(key: key);
+  MyHomePage({Key key, this.socket}) : super(key: key);
+
+  final IO.Socket socket;
 
   @override
   _MyHomePageState createState() => _MyHomePageState();
@@ -20,6 +22,18 @@ class _MyHomePageState extends State<MyHomePage> {
   String user, message;
 
   var _controller = TextEditingController();
+
+  @override
+  void initState() { 
+    super.initState();
+    widget.socket.on('chat:mensaje', (data){
+      setState(() {
+        users.add(data['username']);
+        messages.add(data['message']);
+        print('socket mensaje: $data');
+      });
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -57,7 +71,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     ),
                     child: Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 2),
-                      child: Text('Clear', style: TextStyle(fontSize: 15)),
+                      child: Text('Borrar', style: TextStyle(fontSize: 15)),
                     ),
                     padding: EdgeInsets.all(0),
                   ),
@@ -77,9 +91,11 @@ class _MyHomePageState extends State<MyHomePage> {
                     onPressed: (){
                       if (message != null && user != null) {
                         setState(() {
-                          users.add(user);
-                          messages.add(message);
-                          print('msg: $message, user: $user');
+                          Map packet = {
+                            'username': user,
+                            'message': message
+                          };
+                          widget.socket.emit('chat:mensaje', packet);
                           _controller.clear();
                           message = null;
                         });

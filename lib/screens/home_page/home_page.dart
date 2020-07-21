@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:test_flutter_websockets/screens/widgets/chat.dart';
-import 'package:test_flutter_websockets/screens/widgets/message.dart';
-import 'package:test_flutter_websockets/screens/widgets/username.dart';
+import 'package:test_flutter_websockets/screens/home_page/widgets/chat.dart';
+import 'package:test_flutter_websockets/screens/home_page/widgets/message.dart';
+import 'package:test_flutter_websockets/screens/home_page/widgets/username.dart';
 
 
 class MyHomePage extends StatefulWidget {

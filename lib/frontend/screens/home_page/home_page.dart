@@ -1,14 +1,14 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get_it/get_it.dart';
+import 'package:test_flutter_websockets/backend/websocket.dart';
 import 'package:test_flutter_websockets/frontend/screens/home_page/widgets/chat.dart';
 import 'package:test_flutter_websockets/frontend/screens/home_page/widgets/message.dart';
 import 'package:test_flutter_websockets/frontend/screens/home_page/widgets/username.dart';
-import 'package:socket_io_client/socket_io_client.dart' as IO;
 
 class MyHomePage extends StatefulWidget {
-  MyHomePage({Key key, this.socket}) : super(key: key);
+  MyHomePage({Key key}) : super(key: key);
 
-  final IO.Socket socket;
 
   @override
   _MyHomePageState createState() => _MyHomePageState();
@@ -21,12 +21,14 @@ class _MyHomePageState extends State<MyHomePage> {
 
   String user, message;
 
+  WebSocket ws = GetIt.I<WebSocket>();
+
   var _controller = TextEditingController();
 
   @override
   void initState() { 
     super.initState();
-    widget.socket.on('chat:mensaje', (data){
+    ws.on('chat:mensaje', (data){
       setState(() {
         users.add(data['username']);
         messages.add(data['message']);
@@ -95,7 +97,7 @@ class _MyHomePageState extends State<MyHomePage> {
                             'username': user,
                             'message': message
                           };
-                          widget.socket.emit('chat:mensaje', packet);
+                          ws.emit('chat:mensaje', packet);
                           _controller.clear();
                           message = null;
                         });

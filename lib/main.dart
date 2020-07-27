@@ -1,29 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:get_it/get_it.dart';
+import 'package:test_flutter_websockets/backend/websocket.dart';
 import 'package:test_flutter_websockets/frontend/screens/home_page/home_page.dart';
 
-import 'package:socket_io_client/socket_io_client.dart' as IO;
 import 'package:test_flutter_websockets/frontend/screens/loading_page/loading_page.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
   SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]).then((_) {
 
-    // @ WEB SOCKET
-    IO.Socket socket = IO.io('http://192.168.1.114:3000', <String, dynamic>{
-      'transports': ['websocket'],
-      'autoConnect': true,
-      // 'extraHeaders': {'foo': 'bar'} // optional
+    // @ Configuración inicial WebSocket
+    WebSocket ws = WebSocket(host: '192.168.1.114', port: 3000);
+    ws.init();
+    ws.on('connect', (_){
+      print('Connected');
     });
 
-    socket.on('connect', (_) {
-      print('connect');
-    });
-
-    socket.on('event', (data) => print(data));
-    // socket.on('chat:mensaje', (data) => print('socket mensaje: $data'));
-    socket.on('disconnect', (_) => print('disconnect'));
-    socket.on('fromServer', (_) => print(_));
+    final getIt = GetIt.instance;
+    getIt.registerSingleton<WebSocket>(ws); // Guardo el objeto para poder acceder desde otros widgets sin tener que pasarlo como parámetro
 
     runApp(MaterialApp(
       theme: ThemeData(
@@ -33,7 +28,7 @@ void main() {
       initialRoute: '/',
       routes: {
         '/': (context) => Loading(),
-        '/home': (context) => MyHomePage(socket: socket,),
+        '/home': (context) => MyHomePage(),
         // '/welcome': (context) => WelcomePage(),
       },
     ));

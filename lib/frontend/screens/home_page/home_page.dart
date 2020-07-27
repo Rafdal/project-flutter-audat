@@ -1,115 +1,70 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:get_it/get_it.dart';
-import 'package:test_flutter_websockets/backend/websocket.dart';
-import 'package:test_flutter_websockets/frontend/screens/home_page/widgets/chat.dart';
-import 'package:test_flutter_websockets/frontend/screens/home_page/widgets/message.dart';
-import 'package:test_flutter_websockets/frontend/screens/home_page/widgets/username.dart';
+import 'package:test_flutter_websockets/frontend/screens/home_page/widgets/AppBarTitle.dart';
+import 'package:test_flutter_websockets/frontend/screens/home_page/widgets/SettingsButton.dart';
 
-class MyHomePage extends StatefulWidget {
-  MyHomePage({Key key}) : super(key: key);
-
+class HomePage extends StatefulWidget {
+  HomePage({Key key}) : super(key: key);
 
   @override
-  _MyHomePageState createState() => _MyHomePageState();
+  _HomePageState createState() => _HomePageState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
+class _HomePageState extends State<HomePage> {
 
-  List<String> users = [];
-  List<String> messages = [];
-
-  String user, message;
-
-  WebSocket ws = GetIt.I<WebSocket>();
-
-  var _controller = TextEditingController();
-
-  @override
-  void initState() { 
+  // Controlador de pagina
+  int _currentIndex = 1;
+  PageController _pageController;
+    @override
+  void initState() {
     super.initState();
-    ws.on('chat:mensaje', (data){
-      setState(() {
-        users.add(data['username']);
-        messages.add(data['message']);
-        print('socket mensaje: $data');
-      });
-    });
+    _pageController = PageController(initialPage: 1);
+  }
+  @override
+  void dispose() {
+    _pageController.dispose();
+    super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('WebSockets testing chat'),
+      appBar: AppBar(title: AppBarTitle(), backgroundColor: Colors.white, actions: <Widget>[SettingsButton()],),
+      body: SizedBox.expand(
+        child: PageView(
+          controller: _pageController,
+          onPageChanged: (index) {
+            setState(() => _currentIndex = index);
+          },
+          children: <Widget>[
+            Container(),
+            Container(),
+            Container(),
+          ],
+        ),
       ),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        mainAxisSize: MainAxisSize.max,
-        children: <Widget>[
-          Padding(padding: EdgeInsets.fromLTRB(8, 8, 8, 0),
-            child: UsernameInput(onSubimitted: (val){user=val;},),
+      backgroundColor: Color.fromRGBO(245, 245, 245, 1),
+      bottomNavigationBar: BottomNavigationBar(
+        unselectedItemColor: Colors.grey,
+        type: BottomNavigationBarType.fixed,
+        currentIndex: _currentIndex,
+        onTap: (index) {
+          setState(() => _currentIndex = index);
+          _pageController.animateToPage(index, duration: Duration(milliseconds: 300), curve: Curves.linearToEaseOut);
+        },
+        items: <BottomNavigationBarItem>[
+          BottomNavigationBarItem(
+            title: Text('Inicio'),
+            icon: Icon(Icons.home),
           ),
-          Container(
-            height: 30,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              crossAxisAlignment: CrossAxisAlignment.end,
-              children: <Widget>[
-                Text(''),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                  child: RawMaterialButton(
-                    onPressed: (){
-                      setState(() {
-                        messages = <String>[];
-                        users = <String>[];
-                      });
-                    },
-                    constraints: BoxConstraints(),
-                    shape: RoundedRectangleBorder(
-                      side: BorderSide(style: BorderStyle.solid, width: 1, color: Colors.grey),
-                      borderRadius: BorderRadius.circular(5),
-                    ),
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 2),
-                      child: Text('Borrar', style: TextStyle(fontSize: 15)),
-                    ),
-                    padding: EdgeInsets.all(0),
-                  ),
-                )
-              ],
-            ),
+          BottomNavigationBarItem(
+            title: Text('Módulos'),
+            icon: Icon(Icons.developer_board),
           ),
-          ChatWindow(user: users, message: messages),
-          Container(
-            color: CupertinoColors.lightBackgroundGray,
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 5.0, vertical: 5),
-              child: Row(
-                children: <Widget>[
-                  Expanded(child: MessageInput(onSubimitted: (val){message=val;}, controller: _controller,)),
-                  IconButton(
-                    onPressed: (){
-                      if (message != null && user != null) {
-                        setState(() {
-                          Map packet = {
-                            'username': user,
-                            'message': message
-                          };
-                          ws.emit('chat:mensaje', packet);
-                          _controller.clear();
-                          message = null;
-                        });
-                      }
-                    },
-                    icon: Icon(Icons.send),
-                    color: Colors.blueGrey,
-                  )
-                ],
-              ),
-            ),
-          )
+          BottomNavigationBarItem(
+            title: Text('Ayuda'),
+            icon: Icon(Icons.help),
+          ),
         ],
       ),
     );

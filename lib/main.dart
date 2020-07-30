@@ -17,7 +17,8 @@ void main() {
       print('WS Connected');
     });
 
-    ws.on('module:control', (data){
+    // ! TEST
+    ws.on('module:control', (data){ 
       print('[CONTROL PACKET]: $data');
     });
 
@@ -25,8 +26,10 @@ void main() {
     getIt.registerSingleton<WebSocket>(ws); // Guardo el objeto para poder acceder desde otros widgets sin tener que pasarlo como parámetro
 
     runApp(MaterialApp(
+      themeMode: ThemeMode.system,
       theme: ThemeData(
-        fontFamily: 'Montserrat'
+        fontFamily: 'Montserrat',
+        primaryColor: Colors.blue,
       ),
       debugShowCheckedModeBanner: false,
       initialRoute: '/',

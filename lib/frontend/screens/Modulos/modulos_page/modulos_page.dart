@@ -1,11 +1,8 @@
-import 'dart:collection';
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
-import 'package:test_flutter_websockets/backend/ModuleControl/ModuleControl.dart';
 import 'package:test_flutter_websockets/backend/websocket.dart';
 import 'package:test_flutter_websockets/frontend/classes/AudatButtonData.dart';
+import 'package:test_flutter_websockets/frontend/screens/Modulos/modulos_page/widgets/ModuloCard.dart';
 import 'package:test_flutter_websockets/frontend/widgets/AudatButton.dart';
 
 class ModulosPage extends StatefulWidget {
@@ -16,23 +13,103 @@ class ModulosPage extends StatefulWidget {
 class _ModulosPageState extends State<ModulosPage> {
 
   AudatButtonData btnData = AudatButtonData(
-    radius: 15, 
-    paddingExt: EdgeInsets.all(5),
-    paddingInt: EdgeInsets.all(10),
+    paddingInt: EdgeInsets.all(4), 
+    paddingExt: EdgeInsets.symmetric(horizontal: 5),
+    outlined: true, 
+    background: null,
+    textSize: 14
   );
 
   WebSocket ws = GetIt.I<WebSocket>();
 
+  int count = 1;
+
+  ScrollController _scrollController = ScrollController(initialScrollOffset: 0);
+
   @override
   void initState() { 
     super.initState();
-    
   }
 
   @override
   Widget build(BuildContext context) {
+    return Scaffold(
+      floatingActionButton: FloatingActionButton(
+        onPressed: (){},
+        child: Icon(Icons.add, size: 30,),
+      ),
+      body: Container(child: Column(
+        children: <Widget>[
+          Visibility(
+            visible: false,
+            child: Container(
+              color: Color.fromRGBO(220, 220, 220, 1),
+              height: 45,
+              child: Padding(
+                padding: const EdgeInsets.only(left: 10, right: 10),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: <Widget>[
+                    AudatButton(
+                      child: Row(
+                        children: <Widget>[
+                          Icon(Icons.check),
+                          Text('Seleccionar'),
+                        ],
+                      ),
+                      onPressed: (){}, 
+                      audatButtonData: btnData,
+                    ),
+                    AudatButton(
+                      child: Row(
+                        children: <Widget>[
+                          Icon(Icons.add),
+                          Text('Agregar'),
+                        ],
+                      ),
+                      onPressed: (){}, 
+                      audatButtonData: btnData,
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ),
+          Expanded(
+            child: Container(
+              child: Scrollbar(
+                isAlwaysShown: true,
+                controller: _scrollController,
+                child: ListView.builder(
+                  physics: BouncingScrollPhysics(),
+                  controller: _scrollController,
+                  itemCount: count+1,
+                  itemBuilder: (BuildContext context, int index) {
+                    if (count == index) {
+                      return SizedBox(height: 70,);
+                    } else {
+                      return ModuloCard();
+                    }
+                 },
+                ),
+              ),
+            ),
+          ),
+        ],
+      ),),
+    );
+  }
+}
 
-    return Container(
+
+
+
+
+
+
+/* 
+Container(
       child: Column(children: <Widget>[
         Padding(
           padding: const EdgeInsets.all(15.0),
@@ -95,5 +172,5 @@ class _ModulosPageState extends State<ModulosPage> {
         Text('Qué onda gente?', style: TextStyle(color: Colors.grey.withOpacity(0.8)),)
       ],),
     );
-  }
-}
+
+ */

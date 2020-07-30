@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class AppBarTitle extends StatelessWidget {
-  const AppBarTitle({Key key}) : super(key: key);
+  const AppBarTitle({Key key, this.title}) : super(key: key);
 
   final Shadow shadow = const Shadow(
     color: Colors.black54,
@@ -10,6 +10,7 @@ class AppBarTitle extends StatelessWidget {
   );
 
   final double size = 32;
+  final String title;
 
   @override
   Widget build(BuildContext context) {
@@ -27,11 +28,11 @@ class AppBarTitle extends StatelessWidget {
           color: Colors.lightBlue,
           shadows: [shadow]
         )),
-        TextSpan(text: 'App', style: TextStyle(
+        TextSpan(text: title, style: TextStyle(
           fontFamily: 'Montserrat', 
           fontStyle: FontStyle.italic,
           letterSpacing: -0.5,
-          fontSize: 25,
+          fontSize: 24,
           color: Colors.grey.withOpacity(0.5),
           // shadows: [shadow]
         )),

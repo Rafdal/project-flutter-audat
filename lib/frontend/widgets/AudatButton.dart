@@ -29,11 +29,13 @@ class AudatButton extends StatelessWidget {
           color: audatButtonData == null ? Colors.grey : audatButtonData.textColor,
           fontFamily: 'Montserrat',
           fontWeight: FontWeight.w400,
-          fontSize: 22
+          fontSize: audatButtonData == null ? 22 : audatButtonData.textSize
         ),
         fillColor: audatButtonData == null ? Colors.white : audatButtonData.background, // audatButtonData.radius ??
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(audatButtonData == null ? 8 : audatButtonData.radius), side: BorderSide(color: Colors.grey,style: BorderStyle.none)),
+          borderRadius: BorderRadius.circular(audatButtonData == null ? 8 : audatButtonData.radius), 
+          side: BorderSide(color: Colors.grey, style: audatButtonData.outlined? BorderStyle.solid : BorderStyle.none)
+        ),
       ),
     );
   }

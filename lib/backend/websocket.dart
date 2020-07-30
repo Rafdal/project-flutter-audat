@@ -6,11 +6,6 @@
 class WebSocket {
 
   IO.Socket socket;
-
-  /* static final WebSocket instance = WebSocket._internal();
-  WebSocket._internal();
-
-  factory WebSocket()=>instance; */
   
   final String host;
   final int port;
@@ -36,6 +31,9 @@ class WebSocket {
     socket.emit(event,data);
   }
 
+  bool connected(){
+    return socket.connected;
+  }
 
   // socket.on('event', (data) => print(data));
   // // socket.on('chat:mensaje', (data) => print('socket mensaje: $data'));

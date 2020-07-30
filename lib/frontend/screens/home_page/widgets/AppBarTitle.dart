@@ -9,7 +9,7 @@ class AppBarTitle extends StatelessWidget {
     blurRadius: 3
   );
 
-  final double size = 38;
+  final double size = 32;
 
   @override
   Widget build(BuildContext context) {
@@ -31,8 +31,8 @@ class AppBarTitle extends StatelessWidget {
           fontFamily: 'Montserrat', 
           fontStyle: FontStyle.italic,
           letterSpacing: -0.5,
-          fontSize: 30,
-          color: Colors.grey.withOpacity(0.6),
+          fontSize: 25,
+          color: Colors.grey.withOpacity(0.5),
           // shadows: [shadow]
         )),
       ]

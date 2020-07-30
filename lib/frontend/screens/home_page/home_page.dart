@@ -1,7 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:test_flutter_websockets/frontend/screens/home_page/widgets/AppBarTitle.dart';
+import 'package:test_flutter_websockets/frontend/screens/home_page/widgets/MenuButton.dart';
 import 'package:test_flutter_websockets/frontend/screens/home_page/widgets/SettingsButton.dart';
+import 'package:test_flutter_websockets/frontend/screens/modulos_page/modulos_page.dart';
+import 'package:test_flutter_websockets/frontend/widgets/AudatButton.dart';
 
 class HomePage extends StatefulWidget {
   HomePage({Key key}) : super(key: key);
@@ -29,16 +32,21 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: AppBarTitle(), backgroundColor: Colors.white, actions: <Widget>[SettingsButton()],),
+      appBar: AppBar(
+        title: AppBarTitle(), centerTitle: true, backgroundColor: Colors.white, 
+        actions: <Widget>[SettingsButton()], 
+        leading: MenuButton(),
+      ),
       body: SizedBox.expand(
         child: PageView(
+          physics: NeverScrollableScrollPhysics(),
           controller: _pageController,
           onPageChanged: (index) {
             setState(() => _currentIndex = index);
           },
           children: <Widget>[
             Container(),
-            Container(),
+            ModulosPage(),
             Container(),
           ],
         ),
@@ -54,15 +62,15 @@ class _HomePageState extends State<HomePage> {
         },
         items: <BottomNavigationBarItem>[
           BottomNavigationBarItem(
-            title: Text('Inicio'),
+            title: Text('Home'),
             icon: Icon(Icons.home),
           ),
           BottomNavigationBarItem(
-            title: Text('Módulos'),
+            title: Text('Modules'),
             icon: Icon(Icons.developer_board),
           ),
           BottomNavigationBarItem(
-            title: Text('Ayuda'),
+            title: Text('Help'),
             icon: Icon(Icons.help),
           ),
         ],

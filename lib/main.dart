@@ -10,11 +10,15 @@ void main() {
   WidgetsFlutterBinding.ensureInitialized();
   SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]).then((_) {
 
-    // @ Configuración inicial WebSocket
+    // Configuración inicial WebSocket (Con mi wrapper)
     WebSocket ws = WebSocket(host: '192.168.1.114', port: 3000);
     ws.init();
     ws.on('connect', (_){
-      print('Connected');
+      print('WS Connected');
+    });
+
+    ws.on('module:control', (data){
+      print('[CONTROL PACKET]: $data');
     });
 
     final getIt = GetIt.instance;

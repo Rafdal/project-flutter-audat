@@ -77,40 +77,26 @@ class _ComandosPageTestState extends State<ComandosPageTest> {
                       iconSize: 60,
                       activeText: 'Timer',
                       inactiveText: 'Timer',
+                      fontSize: 16,
                     ),
-                    /* AudatSwitchButton(
-                      value: status,
-                      activeChild: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: <Widget>[
-                          Icon(Icons.timer, size: 50, color: Colors.lightBlueAccent,),
-                          Text('Timers'),
-                        ],
-                      ),
-                      inactiveChild: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: <Widget>[
-                          Icon(Icons.timer_off, size: 50,),
-                          Text('Timers'),
-                        ],
-                      ),
-                      activeBtnData: buttonData.copyWith(textColor: Colors.lightBlueAccent, splash: Colors.grey),
-                      inactiveBtnData: buttonData.copyWith(splash: Colors.lightBlueAccent),
-                      onChanged: (val){
-                        
-                      }, 
-                    ), */
                     AudatButton(
                       child: Text('Configuración'),
                       audatButtonData: buttonData,
                       onPressed: (){}, 
                     ),
-                    AudatSwitchButton(
-                      activeBtnData: buttonData.copyWith(background: Colors.lightBlueAccent, textColor: Colors.white, textSize: 25),
-                      inactiveBtnData: buttonData.copyWith(background: Colors.grey, textColor: Colors.black54, textSize: 25),
+                    AudatIconSwitch(
+                      activeText: 'ON',
+                      activeColor: Colors.white,
+                      inactiveText: 'OFF',
+                      inactiveColor: Colors.black54,
+                      backgroundActive: Colors.lightBlueAccent,
+                      backgroundInactive: Colors.grey,
+                      paddingExt: buttonData.paddingExt,
+                      radius: buttonData.radius,
+                      splash: Colors.lightBlueAccent,
+                      activeSplash: Colors.white,
+                      fontSize: 26,
                       value: status, 
-                      activeChild: Text('ON'),
-                      inactiveChild: Text('OFF'),
                       onChanged: (val){
                         setState(() {
                           status = val;

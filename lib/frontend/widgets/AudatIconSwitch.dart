@@ -24,6 +24,7 @@ class AudatIconSwitch extends StatelessWidget {
     this.paddingExt = EdgeInsets.zero,
     this.paddingInt = EdgeInsets.zero,
     this.fontWeight = FontWeight.normal,
+    this.fontSize = 22,
   }) : super(key: key);
 
   final VoidCallback onPressed;
@@ -31,8 +32,7 @@ class AudatIconSwitch extends StatelessWidget {
   final String inactiveText, activeText;
   final IconData inactiveIcon, activeIcon;
   final Color activeColor, inactiveColor, splash, activeSplash, backgroundActive, backgroundInactive;
-  final double iconSize;
-  final double radius;
+  final double iconSize, fontSize, radius;
   final bool value;
   final EdgeInsetsGeometry paddingExt, paddingInt;
   final FontWeight fontWeight;
@@ -58,6 +58,7 @@ class AudatIconSwitch extends StatelessWidget {
         ),
         activeBtnData: AudatButtonData(
           textColor: activeColor, 
+          textSize: fontSize ?? 18,
           splash: activeSplash ?? splash, 
           radius: radius, 
           paddingExt: paddingExt, paddingInt: paddingInt,
@@ -66,6 +67,7 @@ class AudatIconSwitch extends StatelessWidget {
         ),
         inactiveBtnData: AudatButtonData(
           textColor: inactiveColor, 
+          textSize: fontSize ?? 18,
           splash: splash, 
           radius: radius,
           paddingExt: paddingExt, paddingInt: paddingInt,

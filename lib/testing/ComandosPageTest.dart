@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:test_flutter_websockets/backend/ModuleControl/ModuleControl.dart';
 import 'package:test_flutter_websockets/frontend/classes/AudatButtonData.dart';
 import 'package:test_flutter_websockets/frontend/widgets/AudatButton.dart';
 import 'package:test_flutter_websockets/frontend/widgets/AudatIconSwitch.dart';
@@ -100,6 +101,11 @@ class _ComandosPageTestState extends State<ComandosPageTest> {
                       onChanged: (val){
                         setState(() {
                           status = val;
+                          ModuleControl(
+                            user: 'Rafa',
+                            pass: '1234567',
+                            hardwareId: 'asddsgfjdnasd',
+                          ).sendTo(3, 0);
                         });
                       }
                     ),

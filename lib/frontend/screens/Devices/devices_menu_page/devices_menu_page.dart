@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:test_flutter_websockets/testing/ComandosPageTest.dart';
+import 'package:test_flutter_websockets/testing/GeneralPageTest.dart';
 
 
-class ModulosControlPage extends StatefulWidget {
+class DeviceMenuPage extends StatefulWidget {
   @override
-  _ModulosControlPageState createState() => _ModulosControlPageState();
+  _DeviceMenuPageState createState() => _DeviceMenuPageState();
 }
 
-class _ModulosControlPageState extends State<ModulosControlPage> {
+class _DeviceMenuPageState extends State<DeviceMenuPage> {
 
   // Controlador de pagina
   int _currentIndex = 0;
@@ -67,9 +68,10 @@ class _ModulosControlPageState extends State<ModulosControlPage> {
                   setState(() => _currentIndex = index);
                 },
                 children: <Widget>[
-                  ComandosPageTest(),
+                  GeneralPageTest(),
                   // Container(child: Center(child: Text('General', style: TextStyle(fontSize: 30, color: Colors.grey),),),),
-                  Container(child: Center(child: Text('Modulos', style: TextStyle(fontSize: 30, color: Colors.grey),),),),
+                  ComandosPageTest(),
+                  // Container(child: Center(child: Text('Modulos', style: TextStyle(fontSize: 30, color: Colors.grey),),),),
                   Container(child: Center(child: Text('Graficos', style: TextStyle(fontSize: 30, color: Colors.grey),),),),
                   Container(child: Center(child: Text('Ajustes', style: TextStyle(fontSize: 30, color: Colors.grey),),),),
                 ],

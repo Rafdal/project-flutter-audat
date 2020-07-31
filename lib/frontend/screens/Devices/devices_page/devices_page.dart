@@ -2,15 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 import 'package:test_flutter_websockets/backend/websocket.dart';
 import 'package:test_flutter_websockets/frontend/classes/AudatButtonData.dart';
-import 'package:test_flutter_websockets/frontend/screens/Modulos/modulos_page/widgets/ModuloCard.dart';
-import 'package:test_flutter_websockets/frontend/widgets/AudatButton.dart';
+import 'package:test_flutter_websockets/frontend/screens/Devices/devices_page/widgets/ModuloCard.dart';
 
-class ModulosPage extends StatefulWidget {
+class DevicesPage extends StatefulWidget {
   @override
-  _ModulosPageState createState() => _ModulosPageState();
+  _DevicesPageState createState() => _DevicesPageState();
 }
 
-class _ModulosPageState extends State<ModulosPage> {
+class _DevicesPageState extends State<DevicesPage> {
 
   AudatButtonData btnData = AudatButtonData(
     paddingInt: EdgeInsets.all(4), 
@@ -22,7 +21,7 @@ class _ModulosPageState extends State<ModulosPage> {
 
   WebSocket ws = GetIt.I<WebSocket>();
 
-  int count = 12;
+  int count = 1;
 
   ScrollController _scrollController = ScrollController(initialScrollOffset: 0);
 
@@ -40,42 +39,6 @@ class _ModulosPageState extends State<ModulosPage> {
       ),
       body: Container(child: Column(
         children: <Widget>[
-          Visibility(
-            visible: false,
-            child: Container(
-              color: Color.fromRGBO(220, 220, 220, 1),
-              height: 45,
-              child: Padding(
-                padding: const EdgeInsets.only(left: 10, right: 10),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: <Widget>[
-                    AudatButton(
-                      child: Row(
-                        children: <Widget>[
-                          Icon(Icons.check),
-                          Text('Seleccionar'),
-                        ],
-                      ),
-                      onPressed: (){}, 
-                      audatButtonData: btnData,
-                    ),
-                    AudatButton(
-                      child: Row(
-                        children: <Widget>[
-                          Icon(Icons.add),
-                          Text('Agregar'),
-                        ],
-                      ),
-                      onPressed: (){}, 
-                      audatButtonData: btnData,
-                    ),
-                  ],
-                ),
-              ),
-            ),
-          ),
           Expanded(
             child: Container(
               child: Scrollbar(
@@ -89,7 +52,12 @@ class _ModulosPageState extends State<ModulosPage> {
                     if (count == index) {
                       return SizedBox(height: 70,);
                     } else {
-                      return ModuloCard();
+                      return ModuloCard(
+                        icon: Icons.home,
+                        title: 'Mi casa',
+                        subtitle: 'Central de control',
+                        internalPadding: EdgeInsets.symmetric(vertical: 15),
+                      );
                     }
                  },
                 ),

@@ -1,10 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:test_flutter_websockets/frontend/screens/Devices/devices_page/devices_page.dart';
 import 'package:test_flutter_websockets/frontend/screens/home_page/widgets/AppBarTitle.dart';
-import 'package:test_flutter_websockets/frontend/screens/home_page/widgets/MenuButton.dart';
-import 'package:test_flutter_websockets/frontend/screens/home_page/widgets/SettingsButton.dart';
-import 'package:test_flutter_websockets/frontend/screens/Modulos/modulos_page/modulos_page.dart';
-import 'package:test_flutter_websockets/frontend/widgets/AudatButton.dart';
 
 class HomePage extends StatefulWidget {
   HomePage({Key key}) : super(key: key);
@@ -49,7 +46,7 @@ class _HomePageState extends State<HomePage> {
           Container(child: Center(child: Text('Inicio', style: TextStyle(fontSize: 30, color: Colors.grey),),),),
           Container(child: Center(child: Text('Perfil', style: TextStyle(fontSize: 30, color: Colors.grey),),),),
           Container(child: Center(child: Text('Amigos', style: TextStyle(fontSize: 30, color: Colors.grey),),),),
-          ModulosPage(),
+          DevicesPage(),
           Container(child: Center(child: Text('Automatización', style: TextStyle(fontSize: 30, color: Colors.grey),),),),
           Container(child: Center(child: Text('Configuración', style: TextStyle(fontSize: 30, color: Colors.grey),),),),
           Container(child: Center(child: Text('Información', style: TextStyle(fontSize: 30, color: Colors.grey),),),),

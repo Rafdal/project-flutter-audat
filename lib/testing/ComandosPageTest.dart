@@ -94,7 +94,7 @@ class _ComandosPageTestState extends State<ComandosPageTest> {
                       backgroundInactive: Colors.grey,
                       paddingExt: buttonData.paddingExt,
                       radius: buttonData.radius,
-                      splash: Colors.lightBlueAccent,
+                      splash: Colors.blueAccent,
                       activeSplash: Colors.white,
                       fontSize: 26,
                       value: status, 
@@ -104,7 +104,7 @@ class _ComandosPageTestState extends State<ComandosPageTest> {
                           ModuleControl(
                             user: 'Rafa',
                             pass: '1234567',
-                            hardwareId: 'asddsgfjdnasd',
+                            hardwareId: '3C:71:BF:FF:76:3C',
                           ).sendTo(3, 0);
                         });
                       }

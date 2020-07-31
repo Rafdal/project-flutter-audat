@@ -7,7 +7,9 @@ class AudatButtonData {
   final double textSize;
   final Color textColor;
   final Color background;
+  final Color splash;
   final bool outlined;
+  final FontWeight fontWeight;
 
   AudatButtonData({
     this.radius = 8, 
@@ -16,7 +18,9 @@ class AudatButtonData {
     this.paddingInt = const EdgeInsets.all(0),
     this.textColor = Colors.grey,
     this.background = Colors.white,
+    this.splash = Colors.white,
     this.outlined = false,
+    this.fontWeight = FontWeight.normal,
   });
 
   const AudatButtonData.only({
@@ -25,8 +29,10 @@ class AudatButtonData {
     this.radius = 8,
     this.textSize = 18,
     this.textColor = Colors.grey,
-    this.background = Colors.grey,
+    this.background = Colors.white,
+    this.splash = Colors.white,
     this.outlined = false,
+    this.fontWeight = FontWeight.normal,
   });
 
   AudatButtonData copyWith({
@@ -35,7 +41,9 @@ class AudatButtonData {
     double textSize,
     Color textColor,
     Color background,
+    Color splash,
     Color outlined,
+    FontWeight fontWeight,
   }) {
     return AudatButtonData.only(
       paddingInt: paddingInt ?? this.paddingInt,
@@ -44,7 +52,9 @@ class AudatButtonData {
       textSize: textSize ?? this.textSize,
       textColor: textColor ?? this.textColor,
       background: background ?? this.background,
+      splash: splash ?? this.splash,
       outlined: outlined ?? this.outlined,
+      fontWeight: fontWeight ?? this.fontWeight,
     );
   }
   

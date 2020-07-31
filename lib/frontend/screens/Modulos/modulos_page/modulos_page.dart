@@ -22,7 +22,7 @@ class _ModulosPageState extends State<ModulosPage> {
 
   WebSocket ws = GetIt.I<WebSocket>();
 
-  int count = 1;
+  int count = 12;
 
   ScrollController _scrollController = ScrollController(initialScrollOffset: 0);
 

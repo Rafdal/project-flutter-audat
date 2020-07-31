@@ -15,12 +15,11 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
 
-  int _menuIndex = 2;
   PageController _pageController;
     @override
   void initState() {
     super.initState();
-    _pageController = PageController(initialPage: 2);
+    _pageController = PageController(initialPage: 3);
   }
   @override
   void dispose() {
@@ -30,6 +29,7 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
       appBar: AppBar(
         title: Text('Dispositivos', style: TextStyle(color: Colors.grey),), centerTitle: true, backgroundColor: Colors.white, 
@@ -46,14 +46,14 @@ class _HomePageState extends State<HomePage> {
           setState(() => _menuIndex = index);
         }, */
         children: <Widget>[
-          Container(),
-          Container(),
+          Container(child: Center(child: Text('Inicio', style: TextStyle(fontSize: 30, color: Colors.grey),),),),
+          Container(child: Center(child: Text('Perfil', style: TextStyle(fontSize: 30, color: Colors.grey),),),),
+          Container(child: Center(child: Text('Amigos', style: TextStyle(fontSize: 30, color: Colors.grey),),),),
           ModulosPage(),
-          Container(),
-          Container(),
-          Container(),
-          Container(),
-          Container(),
+          Container(child: Center(child: Text('Automatización', style: TextStyle(fontSize: 30, color: Colors.grey),),),),
+          Container(child: Center(child: Text('Configuración', style: TextStyle(fontSize: 30, color: Colors.grey),),),),
+          Container(child: Center(child: Text('Información', style: TextStyle(fontSize: 30, color: Colors.grey),),),),
+          Container(child: Center(child: Text('Ayuda', style: TextStyle(fontSize: 30, color: Colors.grey),),),),
         ],
       ),
       backgroundColor: Color.fromRGBO(235, 235, 235, 1),
@@ -70,12 +70,14 @@ class _HomePageState extends State<HomePage> {
               ),
             ),
             // Divider(thickness: 1.5,),
-            CustomMenuTile(0, 'Tu perfil', Icons.person, _pageController),
-            CustomMenuTile(1 ,'Amigos', Icons.group, _pageController),
+            CustomMenuTile(0, 'Inicio', Icons.home, _pageController),
             Divider(),
-            CustomMenuTile(2 ,'Dispositivos', Icons.view_list, _pageController),
-            CustomMenuTile(3 ,'Automatización', Icons.functions, _pageController),
-            CustomMenuTile(4 ,'Configuración', Icons.settings, _pageController),
+            CustomMenuTile(1, 'Tu perfil', Icons.person, _pageController),
+            CustomMenuTile(2 ,'Amigos', Icons.group, _pageController),
+            Divider(),
+            CustomMenuTile(3 ,'Dispositivos', Icons.view_list, _pageController),
+            CustomMenuTile(4 ,'Automatización', Icons.functions, _pageController),
+            CustomMenuTile(5 ,'Configuración', Icons.settings, _pageController),
             Divider(),
             CustomMenuTile(6 ,'Información', Icons.info_outline, _pageController),
             CustomMenuTile(7 ,'Ayuda', Icons.help_outline, _pageController),
@@ -105,8 +107,11 @@ class CustomMenuTile extends StatelessWidget {
         Navigator.of(context).pop();
       },
       child: ListTile(
-        title: Text(title),
-        leading: Icon(icon),
+        title: Text(title, style: TextStyle(
+          fontWeight: id == 0 ? FontWeight.w700 : null, 
+          color: id == 0 && id != controller.page  ? Color.fromRGBO(80, 80, 80, 1) : null,
+        ),),
+        leading: Icon(icon, color: id == 0 && id != controller.page ? Color.fromRGBO(80, 80, 80, 1) : null,),
         selected: id == controller.page,
       ),
     );

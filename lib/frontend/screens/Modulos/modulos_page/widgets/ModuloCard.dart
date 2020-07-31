@@ -23,7 +23,7 @@ class _ModuloCardState extends State<ModuloCard> {
       child: Card(
         color: Colors.white,
         elevation: 1,
-        margin: EdgeInsets.fromLTRB(8, 4, 15, 12),
+        margin: EdgeInsets.fromLTRB(8, 8, 15, 8),
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
         child: Container( 
           child: ListTile(
@@ -44,14 +44,20 @@ class _ModuloCardState extends State<ModuloCard> {
         ),
       ), 
       menuItems: <FocusedMenuItem>[
-        FocusedMenuItem(
+        /* FocusedMenuItem(
           title: Text('Info', style: TextStyle(color: Colors.black, fontWeight: FontWeight.w400),), 
           trailingIcon: Icon(Icons.info_outline, color: Colors.black54,), 
           onPressed: (){}
-        ),
+        ), */
         FocusedMenuItem(
           title: Text('Agregar módulo', style: TextStyle(color: Colors.black, fontWeight: FontWeight.w400),), 
           trailingIcon: Icon(Icons.add, color: Colors.black54,), 
+          onPressed: (){}
+        ),
+        FocusedMenuItem(
+          title: Text('Acciones rápidas', style: TextStyle(color: Colors.black, fontWeight: FontWeight.w400),), 
+          trailingIcon: Icon(Icons.view_module,
+            color: Colors.black54,), 
           onPressed: (){}
         ),
         FocusedMenuItem(

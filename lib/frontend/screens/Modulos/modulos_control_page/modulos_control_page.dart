@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:test_flutter_websockets/testing/ComandosPageTest.dart';
 
 
 class ModulosControlPage extends StatefulWidget {
@@ -66,14 +67,16 @@ class _ModulosControlPageState extends State<ModulosControlPage> {
                   setState(() => _currentIndex = index);
                 },
                 children: <Widget>[
-                  Container(),
-                  Container(),
-                  Container(),
+                  ComandosPageTest(),
+                  // Container(child: Center(child: Text('General', style: TextStyle(fontSize: 30, color: Colors.grey),),),),
+                  Container(child: Center(child: Text('Modulos', style: TextStyle(fontSize: 30, color: Colors.grey),),),),
+                  Container(child: Center(child: Text('Graficos', style: TextStyle(fontSize: 30, color: Colors.grey),),),),
+                  Container(child: Center(child: Text('Ajustes', style: TextStyle(fontSize: 30, color: Colors.grey),),),),
                 ],
               ),
             ),
           ),
-          Container(width: 25, 
+          Container(width: 35, 
             child: GestureDetector(
               child: Container(color: Colors.transparent,), 
               onPanUpdate: (drag){

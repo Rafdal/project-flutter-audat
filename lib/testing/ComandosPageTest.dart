@@ -14,6 +14,8 @@ class ComandosPageTest extends StatefulWidget {
 
 class _ComandosPageTestState extends State<ComandosPageTest> {
 
+  bool timer=false;
+  bool relay=false;
   bool status=false;
 
   AudatButtonData buttonData = AudatButtonData(radius: 20, paddingExt: EdgeInsets.all(5));
@@ -50,27 +52,26 @@ class _ComandosPageTestState extends State<ComandosPageTest> {
                         // Text('Encender'),
                         AudatSwitch(
                           activeColor: Colors.lightBlueAccent,
-                          value: status,
+                          value: relay,
                           onChanged: (value) {
                             print("VALUE : $value");
                             setState(() {
-                              status = value;
+                              relay = value;
                             });
                           },
                         ),
                       ],
                     ),
-                    AudatIconSwitch(value: status, 
+                    AudatIconSwitch(value: timer, 
                       onChanged: (val){
                         setState(() {
-                          status = val;
+                          timer = val;
                         });
                       },
                       fontWeight: FontWeight.w500,
                       activeIcon: Icons.timer,
                       inactiveIcon: Icons.timer_off,
-                      // activeColor: Colors.lightBlueAccent,
-                      // inactiveColor: Colors.grey,
+                      activeSplash: Colors.grey,
                       radius: buttonData.radius,
                       paddingExt: buttonData.paddingExt,
                       iconSize: 60,

@@ -105,8 +105,8 @@ class CustomMenuTile extends StatelessWidget {
       },
       child: ListTile(
         title: Text(title, style: TextStyle(
-          fontWeight: id == 0 ? FontWeight.w700 : null, 
-          color: id == 0 && id != controller.page  ? Color.fromRGBO(80, 80, 80, 1) : null,
+          fontWeight: id == 0 ? FontWeight.w800 : null, 
+          color: id == 0 && id != controller.page  ? Color.fromRGBO(120, 120, 120, 1) : null,
         ),),
         leading: Icon(icon, color: id == 0 && id != controller.page ? Color.fromRGBO(80, 80, 80, 1) : null,),
         selected: id == controller.page,

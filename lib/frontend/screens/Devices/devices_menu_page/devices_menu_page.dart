@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:test_flutter_websockets/testing/ComandosPageTest.dart';
 import 'package:test_flutter_websockets/testing/GeneralPageTest.dart';
+import 'package:test_flutter_websockets/testing/ModulosTestPage.dart';
 
 
 class DeviceMenuPage extends StatefulWidget {
@@ -29,7 +30,11 @@ class _DeviceMenuPageState extends State<DeviceMenuPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Central de control'), backgroundColor: Colors.black54,),
+      appBar: AppBar(
+        title: Text('Mi casa'), 
+        backgroundColor: Colors.black54, 
+        actions: <Widget>[IconButton(icon: Icon(Icons.edit, size: 30,), onPressed: (){})],
+      ),
       bottomNavigationBar: BottomNavigationBar(
         unselectedItemColor: Colors.grey,
         type: BottomNavigationBarType.fixed,
@@ -57,38 +62,24 @@ class _DeviceMenuPageState extends State<DeviceMenuPage> {
           ),
         ],
       ),
-      body: Stack(
-        children: <Widget>[
-          Container(
-            child: SizedBox.expand(
-              child: PageView(
-                physics: NeverScrollableScrollPhysics(),
-                controller: _pageController,
-                onPageChanged: (index) {
-                  setState(() => _currentIndex = index);
-                },
-                children: <Widget>[
-                  GeneralPageTest(),
-                  // Container(child: Center(child: Text('General', style: TextStyle(fontSize: 30, color: Colors.grey),),),),
-                  ComandosPageTest(),
-                  // Container(child: Center(child: Text('Modulos', style: TextStyle(fontSize: 30, color: Colors.grey),),),),
-                  Container(child: Center(child: Text('Graficos', style: TextStyle(fontSize: 30, color: Colors.grey),),),),
-                  Container(child: Center(child: Text('Ajustes', style: TextStyle(fontSize: 30, color: Colors.grey),),),),
-                ],
-              ),
-            ),
+      body: Container(
+        child: SizedBox.expand(
+          child: PageView(
+            physics: AlwaysScrollableScrollPhysics(),
+            controller: _pageController,
+            onPageChanged: (index) {
+              setState(() => _currentIndex = index);
+            },
+            children: <Widget>[
+              GeneralPageTest(),
+              // Container(child: Center(child: Text('General', style: TextStyle(fontSize: 30, color: Colors.grey),),),),
+              ModulosTestPage(),
+              // Container(child: Center(child: Text('Modulos', style: TextStyle(fontSize: 30, color: Colors.grey),),),),
+              Container(child: Center(child: Text('Graficos', style: TextStyle(fontSize: 30, color: Colors.grey),),),),
+              Container(child: Center(child: Text('Ajustes', style: TextStyle(fontSize: 30, color: Colors.grey),),),),
+            ],
           ),
-          Container(width: 35, 
-            child: GestureDetector(
-              child: Container(color: Colors.transparent,), 
-              onPanUpdate: (drag){
-                if (drag.delta.dx > 3) {
-                  Navigator.pop(context);
-                }
-              },
-            ),
-          )
-        ],
+        ),
       ),
     );
   }

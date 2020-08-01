@@ -1,5 +1,13 @@
 import 'package:flutter/material.dart';
 
+
+/* 
+ * Esta funcion sirve para Pushear una nueva pagina (Widget) encima del stack
+ * 
+ * Ademas agrega un detector de gestos para volver a la pagina anterior con un Navigator.pop()
+ */
+
+
 void  showPage(BuildContext context, Widget page) {
   Navigator.push(context,
     PageRouteBuilder(
@@ -15,7 +23,7 @@ void  showPage(BuildContext context, Widget page) {
 
         return SlideTransition(
           position: offsetAnimation,
-          child: child,
+          child: WrapperPage(child: child,),
         );
       }
     )
@@ -23,4 +31,33 @@ void  showPage(BuildContext context, Widget page) {
       return page;
     }) */
   );
+}
+
+class WrapperPage extends StatelessWidget {
+
+  final Widget child;
+
+  const WrapperPage({
+    Key key,
+    this.child,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Stack(
+      children: <Widget>[
+        child,
+        Container(width: 35, 
+          child: GestureDetector(
+            child: Container(color: Colors.transparent,), 
+            onPanUpdate: (drag){
+              if (drag.delta.dx > 3) {
+                Navigator.pop(context);
+              }
+            },
+          ),
+        )
+      ],
+    );
+  }
 }

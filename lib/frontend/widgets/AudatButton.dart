@@ -36,6 +36,7 @@ class AudatButton extends StatelessWidget {
           borderRadius: BorderRadius.circular(audatButtonData == null ? 8 : audatButtonData.radius), 
           side: BorderSide(color: Colors.grey, style: audatButtonData.outlined? BorderStyle.solid : BorderStyle.none)
         ),
+        elevation: audatButtonData.background == Colors.transparent? 0 : 2,
       ),
     );
   }

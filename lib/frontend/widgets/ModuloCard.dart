@@ -10,16 +10,19 @@ class ModuloCard extends StatefulWidget {
 
   final IconData icon;
   final String title, subtitle;
-  final bool antena;
+  final bool antena, online;
   final Color background;
   final EdgeInsetsGeometry internalPadding;
   final double radius;
+  final Widget child;
 
   ModuloCard({
+    @required this.child,
     this.icon,
     this.subtitle='',
     this.title ='',
     this.antena=false,
+    this.online=true,
     this.background = Colors.white,
     this.internalPadding = EdgeInsets.zero,
     this.radius = 15,
@@ -47,6 +50,7 @@ class _ModuloCardState extends State<ModuloCard> {
           padding: widget.internalPadding,
           child: Container( 
             child: ListTile(
+              enabled: widget.online,
               dense: false,
               // contentPadding: EdgeInsets.zero,
               title: Text(widget.title, style: TextStyle(color: Colors.black54, fontWeight: FontWeight.w500,)),
@@ -56,9 +60,15 @@ class _ModuloCardState extends State<ModuloCard> {
                 height: 60,
                 child: Icon(widget.icon, size: 50,)   //Placeholder(color: Colors.grey,)
               ),
-              trailing: Icon(widget.antena? Icons.settings_input_antenna : Icons.wifi, color: Colors.lightBlueAccent,),
+              trailing: Icon(widget.online? (widget.antena? Icons.wifi_tethering : Icons.wifi) : Icons.portable_wifi_off, 
+                color: widget.online? Colors.lightBlueAccent : Colors.grey,
+              ),
               onTap: (){
-                showPage(context, DeviceMenuPage());
+                if (widget.child == null) {
+                  print('[Error] No hay callback');
+                } else {
+                  showPage(context, widget.child);
+                }
               },
             ),
           ),

@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 
 class GeneralPageTest extends StatelessWidget {
 
-  final TextStyle style = TextStyle(color: Colors.grey, fontSize: 14);
+  final TextStyle style = TextStyle(color: Colors.grey, fontSize: 15);
 
   @override
   Widget build(BuildContext context) {
@@ -19,9 +19,9 @@ class GeneralPageTest extends StatelessWidget {
                 children: <Widget>[
                   ListTile(
                     // leading: Icon(Icons.home, size: 40,),
-                    title: Text('Mi casa', style: TextStyle(fontSize: 24, color: Colors.black54, fontWeight: FontWeight.w500),),
+                    title: Text('Central de control', style: TextStyle(fontSize: 24, color: Colors.black54, fontWeight: FontWeight.w500),),
                     // subtitle: Text('Central de control', style: TextStyle(fontSize: 18, color: Colors.grey),),
-                    trailing: Icon(Icons.edit, size: 30,),
+                    // trailing: ,
                     onTap: (){},
                   ),
                   Divider(height: 5, indent: 20, endIndent: 20,),
@@ -39,13 +39,13 @@ class GeneralPageTest extends StatelessWidget {
                           children: <Widget>[
                             Text('Registrados:', style: style,),
                             SizedBox(width: 20,),
-                            Text('2', style: style,)
+                            Text('4', style: style,)
                           ],
                         ),
                         Row(
                           // mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: <Widget>[
-                            Text('En linea:', style: style,),
+                            Text('Conectados:', style: style,),
                             SizedBox(width: 20,),
                             Text('2', style: style,)
                           ],

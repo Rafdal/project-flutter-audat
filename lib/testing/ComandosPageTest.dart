@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:test_flutter_websockets/backend/ModuleControl/ModuleControl.dart';
@@ -21,48 +22,46 @@ class _ComandosPageTestState extends State<ComandosPageTest> {
 
   AudatButtonData buttonData = AudatButtonData(radius: 20, paddingExt: EdgeInsets.all(5));
 
+  AudatButtonData bottomBtnData = AudatButtonData(
+    outlined: true, 
+    paddingInt: EdgeInsets.symmetric(horizontal: 8, vertical: 15),
+    background: null,
+    textSize: 16,
+    radius: 25
+  );
+
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: <Widget>[
-          Align(
-            alignment: Alignment.topCenter,
-            child: Padding(
-              padding: const EdgeInsets.all(15.0),
-              child: ListTile(
-                leading: Icon(Icons.lightbulb_outline, size: 40,),
-                title: Text('Luz patio', style: TextStyle(fontSize: 22, color: Colors.black54, fontWeight: FontWeight.w500),),
-                subtitle: Text('Modulo interruptor', style: TextStyle(fontSize: 16, color: Colors.grey),),
-                onTap: (){},
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.black54,
+        title: Text('Mi casa'),
+      ),
+      body: SafeArea(
+        child: Column(
+          children: <Widget>[
+            Align(
+              alignment: Alignment.topCenter,
+              child: Padding(
+                padding: const EdgeInsets.all(15.0),
+                child: ListTile(
+                  leading: Icon(Icons.lightbulb_outline, size: 40,),
+                  title: Text('Luz habitacion', style: TextStyle(fontSize: 22, color: Colors.black54, fontWeight: FontWeight.w500),),
+                  subtitle: Text('Modulo interruptor', style: TextStyle(fontSize: 16, color: Colors.grey),),
+                  onTap: (){},
+                ),
               ),
             ),
-          ),
-          Divider(height: 1,),
-          Expanded(
-            child: Container(
+            Divider(height: 1,),
+            Container(
+              height: 365,
+              // color: Colors.red.withOpacity(0.1),
               child: SafeArea(
                 child: false ? Placeholder() : GridView.count(
                   crossAxisCount: 2,
                   scrollDirection: Axis.vertical,
+                  physics: NeverScrollableScrollPhysics(),
                   children: <Widget>[
-                    Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: <Widget>[
-                        // Text('Encender'),
-                        AudatSwitch(
-                          activeColor: Colors.lightBlueAccent,
-                          value: relay,
-                          onChanged: (value) {
-                            print("VALUE : $value");
-                            setState(() {
-                              relay = value;
-                            });
-                          },
-                        ),
-                      ],
-                    ),
                     AudatIconSwitch(value: timer, 
                       onChanged: (val){
                         setState(() {
@@ -79,11 +78,6 @@ class _ComandosPageTestState extends State<ComandosPageTest> {
                       activeText: 'Timer',
                       inactiveText: 'Timer',
                       fontSize: 16,
-                    ),
-                    AudatButton(
-                      child: Text('Configuración'),
-                      audatButtonData: buttonData,
-                      onPressed: (){}, 
                     ),
                     AudatIconSwitch(
                       activeText: 'ON',
@@ -109,21 +103,59 @@ class _ComandosPageTestState extends State<ComandosPageTest> {
                         });
                       }
                     ),
+                    AudatButton(
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: <Widget>[
+                          Icon(
+                            CupertinoIcons.circle_filled,
+                            size: 60,
+                            color: Colors.orangeAccent,
+                          ),
+                          Text('Color', style: TextStyle(fontWeight: FontWeight.bold),)
+                        ],
+                      ),
+                      audatButtonData: buttonData,
+                      onPressed: (){}
+                    ),
+                    AudatIconSwitch(
+                      onChanged: (val){}, 
+                      value: false,
+                      paddingExt: buttonData.paddingExt,
+                      radius: buttonData.radius,
+                      inactiveIcon: Icons.functions,
+                      iconSize: 60,
+                      inactiveText: 'Funciones',
+                      fontSize: 16,
+                    )
                   ],
                 ),
               ),
             ),
-          ),
-          /* Padding(padding: EdgeInsets.all(15),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: <Widget>[
-                
-                ,
-              ],
-            ),
-          ), */
-        ],
+            Padding(
+              padding: const EdgeInsets.all(8.0).copyWith(top: 15),
+              child: Row(
+                children: <Widget>[
+                  Expanded(
+                    child: AudatButton(
+                      onPressed: (){}, 
+                      audatButtonData: bottomBtnData,
+                      child: Text('Estadisticas'),
+                    ),
+                  ),
+                  SizedBox(width: 8,),
+                  Expanded(
+                    child: AudatButton(
+                      onPressed: (){}, 
+                      audatButtonData: bottomBtnData,
+                      child: Text('Configuracion'),
+                    ),
+                  )
+                ],
+              ),
+            )
+          ],
+        ),
       ),
     );
   }

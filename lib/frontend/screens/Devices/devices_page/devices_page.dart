@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 import 'package:test_flutter_websockets/backend/websocket.dart';
 import 'package:test_flutter_websockets/frontend/classes/AudatButtonData.dart';
-import 'package:test_flutter_websockets/frontend/screens/Devices/devices_page/widgets/ModuloCard.dart';
+import 'package:test_flutter_websockets/frontend/screens/Devices/devices_menu_page/devices_menu_page.dart';
+import 'package:test_flutter_websockets/frontend/widgets/ModuloCard.dart';
 
 class DevicesPage extends StatefulWidget {
   @override
@@ -57,6 +58,7 @@ class _DevicesPageState extends State<DevicesPage> {
                         title: 'Mi casa',
                         subtitle: 'Central de control',
                         internalPadding: EdgeInsets.symmetric(vertical: 15),
+                        child: DeviceMenuPage(),
                       );
                     }
                  },

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:test_flutter_websockets/testing/ComandosPageTest.dart';
 import 'package:test_flutter_websockets/testing/GeneralPageTest.dart';
+import 'package:test_flutter_websockets/testing/GraficosPageTest.dart';
 import 'package:test_flutter_websockets/testing/ModulosTestPage.dart';
 
 
@@ -75,7 +76,8 @@ class _DeviceMenuPageState extends State<DeviceMenuPage> {
               // Container(child: Center(child: Text('General', style: TextStyle(fontSize: 30, color: Colors.grey),),),),
               ModulosTestPage(),
               // Container(child: Center(child: Text('Modulos', style: TextStyle(fontSize: 30, color: Colors.grey),),),),
-              Container(child: Center(child: Text('Graficos', style: TextStyle(fontSize: 30, color: Colors.grey),),),),
+              // Container(child: Center(child: Text('Graficos', style: TextStyle(fontSize: 30, color: Colors.grey),),),),
+              GraficosPageTest(),
               Container(child: Center(child: Text('Ajustes', style: TextStyle(fontSize: 30, color: Colors.grey),),),),
             ],
           ),

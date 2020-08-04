@@ -63,7 +63,7 @@ class _HomePageState extends State<HomePage> {
               color: Colors.white, //.withOpacity(0.2),
               child: Padding(
                 padding: const EdgeInsets.only(top: 18.0, left: 18, bottom: 14),
-                child: AppBarTitle(title: 'App',),
+                child: AppBarTitle(title: 'App', size: 38, titleSize: 30,),
               ),
             ),
             // Divider(thickness: 1.5,),

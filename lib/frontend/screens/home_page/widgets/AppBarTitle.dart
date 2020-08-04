@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class AppBarTitle extends StatelessWidget {
-  const AppBarTitle({Key key, this.title}) : super(key: key);
+  const AppBarTitle({Key key, this.title, this.size = 32, this.titleSize = 24}) : super(key: key);
 
   final Shadow shadow = const Shadow(
     color: Colors.black54,
@@ -9,7 +9,8 @@ class AppBarTitle extends StatelessWidget {
     blurRadius: 3
   );
 
-  final double size = 32;
+  final double size;
+  final double titleSize;
   final String title;
 
   @override
@@ -32,7 +33,7 @@ class AppBarTitle extends StatelessWidget {
           fontFamily: 'Montserrat', 
           fontStyle: FontStyle.italic,
           letterSpacing: -0.5,
-          fontSize: 24,
+          fontSize: titleSize,
           color: Colors.grey.withOpacity(0.5),
           // shadows: [shadow]
         )),

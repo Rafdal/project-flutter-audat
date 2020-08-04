@@ -66,7 +66,7 @@ class _DeviceMenuPageState extends State<DeviceMenuPage> {
       body: Container(
         child: SizedBox.expand(
           child: PageView(
-            physics: AlwaysScrollableScrollPhysics(),
+            physics: NeverScrollableScrollPhysics(),
             controller: _pageController,
             onPageChanged: (index) {
               setState(() => _currentIndex = index);

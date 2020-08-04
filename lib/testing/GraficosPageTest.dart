@@ -81,6 +81,12 @@ class _GraficosPageTestState extends State<GraficosPageTest> {
                                         ),
                                         lineBarsData: [
                                           LineChartBarData(
+                                            belowBarData: BarAreaData(
+                                              show: true,
+                                              colors: [
+                                                Colors.blue.withOpacity(0.15)
+                                              ]
+                                            ),
                                             isStrokeCapRound: true,
                                             shadow: Shadow(
                                               color: Colors.grey,
@@ -104,6 +110,46 @@ class _GraficosPageTestState extends State<GraficosPageTest> {
                                               FlSpot(4, 6),
                                               FlSpot(5, 7),
                                               FlSpot(6, 3),
+                                            ]
+                                          ),
+
+
+                                          LineChartBarData(
+                                            belowBarData: BarAreaData(
+                                              show: true,
+                                              colors: [
+                                                Colors.orange.withOpacity(0.15),
+                                              ]
+                                            ),
+                                            isStrokeCapRound: true,
+                                            shadow: Shadow(
+                                              color: Colors.grey,
+                                              offset: Offset(0, 1),
+                                              blurRadius: 3,
+                                            ),
+                                            barWidth: 2,
+                                            dashArray: [
+                                              4,0
+                                            ],
+                                            isCurved: true,
+                                            colors: [
+                                              Colors.orange,
+                                            ],
+                                            dotData: FlDotData(
+                                              show: false,
+                                            ),
+                                            spots: [
+                                              FlSpot(0, 9),
+                                              FlSpot(0.5, 5.5),
+                                              FlSpot(1, 5),
+                                              FlSpot(2, 6),
+                                              FlSpot(3, 5),
+                                              FlSpot(3.3, 11),
+                                              FlSpot(3.6, 5),
+                                              FlSpot(4, 4),
+                                              FlSpot(5, 5),
+                                              FlSpot(5.5, 9),
+                                              FlSpot(6, 7),
                                             ]
                                           )
                                         ]

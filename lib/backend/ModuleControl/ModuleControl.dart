@@ -1,7 +1,7 @@
 import 'dart:convert';
-import 'package:crypto/crypto.dart';
 import 'package:get_it/get_it.dart';
 import 'package:test_flutter_websockets/backend/websocket.dart';
+import 'package:crypto/crypto.dart';
 
 /* 
  * Esta clase es usada como interfaz de control para los modulos

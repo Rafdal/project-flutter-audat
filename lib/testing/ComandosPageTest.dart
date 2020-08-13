@@ -95,11 +95,20 @@ class _ComandosPageTestState extends State<ComandosPageTest> {
                       onChanged: (val){
                         setState(() {
                           status = val;
+                          
                           ModuleControl(
                             user: 'Rafa',
                             pass: '1234567',
                             hardwareId: '3C:71:BF:FF:76:3C',
-                          ).sendTo(3, 0);
+                          ).sendTo(3, 0, packet: val);
+
+                          Future.delayed(Duration(milliseconds: 50), (){
+                            ModuleControl(
+                              user: 'Rafa',
+                              pass: '1234567',
+                              hardwareId: '3C:71:BF:FF:76:3C',
+                            ).sendTo(3, 0, packet: val);
+                          });  
                         });
                       }
                     ),
